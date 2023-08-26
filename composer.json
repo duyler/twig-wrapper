@@ -1,0 +1,36 @@
+{
+    "name": "duyler/twig-wrapper",
+    "type": "library",
+    "description": "Duyler twig wrapper",
+    "license": "MIT",
+    "keywords": [
+        "twig"
+    ],
+    "authors": [
+        {
+            "name": "Mikhail Ilinsky",
+            "email": "mail@milinsky.ru"
+        }
+    ],
+    "support": {
+        "docs": "https://duyler.org/docs/twig/"
+    },
+    "require": {
+        "php": "^8.2",
+        "twig/extensions": "^1.5"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10.0"
+    },
+    "minimum-stability": "dev",
+    "autoload": {
+        "psr-4": {
+            "Duyler\\TwigWrapper\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Duyler\\TwigWrapper\\Test\\": ["tests/"]
+        }
+    }
+}
