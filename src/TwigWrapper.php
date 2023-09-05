@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace Duyler\TwigWrapper;
 
-use Duyler\Config\Config;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -17,19 +16,16 @@ class TwigWrapper
     private Environment $twig;
     private array $variables = [];
 
-    public function __construct(Config $config)
+    public function __construct(TwigConfigDto $config)
     {
         $this->loader = new FilesystemLoader(
-            $config->env(Config::PROJECT_ROOT) .
-            $config->get('twig', 'path_to_view')
+            $config->pathToViews
         );
 
         $this->twig = new Environment($this->loader);
 
-        $extensions = $config->get('twig', 'extensions');
-
-        foreach ($extensions as $extension) {
-            $this->twig->addExtension(new $extension);
+        foreach ($config->extensions as $extension) {
+            $this->twig->addExtension(new $extension($config));
         }
     }
 
