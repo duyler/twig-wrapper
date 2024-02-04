@@ -10,6 +10,5 @@ class TwigConfigDto
         public string $pathToViews,
         public string $projectRoot,
         public array $extensions = [],
-    ) {
-    }
+    ) {}
 }

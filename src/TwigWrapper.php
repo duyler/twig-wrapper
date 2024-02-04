@@ -32,6 +32,7 @@ class TwigWrapper
     public function content(array $variables): self
     {
         $this->variables = $this->variables + $variables;
+
         return $this;
     }
 
@@ -42,7 +43,9 @@ class TwigWrapper
      */
     public function render(string $template): string
     {
-        return $this->twig->render($template . '.twig', $this->variables);
+        $content = $this->twig->render($template . '.twig', $this->variables);
+        $this->variables = [];
+        return $content;
     }
 
     public function exists(string $template): bool
