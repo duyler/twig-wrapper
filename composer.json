@@ -21,7 +21,8 @@
         "twig/extensions": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^10.0"
+        "phpunit/phpunit": "^10.0",
+        "friendsofphp/php-cs-fixer": "^3.30"
     },
     "minimum-stability": "dev",
     "autoload": {
