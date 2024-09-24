@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Duyler\TwigWrapper;
 
+use InvalidArgumentException;
 use Twig\Environment;
 use Twig\Error\LoaderError;
 use Twig\Error\RuntimeError;
@@ -19,7 +20,7 @@ class TwigWrapper
     public function __construct(TwigConfigDto $config)
     {
         $this->loader = new FilesystemLoader(
-            $config->pathToViews
+            $config->pathToViews,
         );
 
         $this->twig = new Environment($this->loader);
@@ -31,7 +32,12 @@ class TwigWrapper
 
     public function content(array $variables): self
     {
-        $this->variables = $this->variables + $variables;
+        foreach ($variables as $name => $value) {
+            if (array_key_exists($name, $this->variables)) {
+                throw new InvalidArgumentException('Variable "' . $name . '" is already defined.');
+            }
+            $this->variables[$name] = $value;
+        }
 
         return $this;
     }
