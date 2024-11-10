@@ -8,7 +8,6 @@ class TwigConfigDto
 {
     public function __construct(
         public string $pathToViews,
-        public string $projectRoot,
         public array $extensions = [],
     ) {}
 }
