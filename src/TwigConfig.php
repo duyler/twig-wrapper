@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace Duyler\TwigWrapper;
 
-class TwigConfigDto
+class TwigConfig
 {
     public function __construct(
         public string $pathToViews,

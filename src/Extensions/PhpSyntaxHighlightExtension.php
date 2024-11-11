@@ -4,13 +4,13 @@ declare(strict_types=1);
 
 namespace Duyler\TwigWrapper\Extensions;
 
-use Duyler\TwigWrapper\TwigConfigDto;
+use Duyler\TwigWrapper\TwigConfig;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFunction;
 
 class PhpSyntaxHighlightExtension extends AbstractExtension
 {
-    public function __construct(private readonly TwigConfigDto $config) {}
+    public function __construct(private readonly TwigConfig $config) {}
 
     public function getFunctions(): array
     {
