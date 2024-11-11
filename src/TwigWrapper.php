@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Duyler\TwigWrapper;
 
+use Duyler\DI\Attribute\Finalize;
 use InvalidArgumentException;
 use Twig\Environment;
 use Twig\Error\LoaderError;
@@ -11,13 +12,14 @@ use Twig\Error\RuntimeError;
 use Twig\Error\SyntaxError;
 use Twig\Loader\FilesystemLoader;
 
+#[Finalize]
 class TwigWrapper
 {
     private FilesystemLoader $loader;
     private Environment $twig;
     private array $variables = [];
 
-    public function __construct(TwigConfigDto $config)
+    public function __construct(TwigConfig $config)
     {
         $this->loader = new FilesystemLoader(
             $config->pathToViews,
@@ -57,5 +59,10 @@ class TwigWrapper
     public function exists(string $template): bool
     {
         return $this->loader->exists($template . '.twig');
+    }
+
+    public function finalize(): void
+    {
+        $this->variables = [];
     }
 }
